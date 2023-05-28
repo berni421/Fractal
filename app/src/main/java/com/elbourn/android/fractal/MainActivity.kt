@@ -30,6 +30,7 @@ class MainActivity : OptionsMenu() {
     companion object {
         const val BF = "file:///android_asset/website_barnsley-fern-camera/index.html"
         const val MANDELBROTSET = "file:///android_asset/website_mandelbrot-set-camera/index.html"
+        const val JULIASET = "file:///android_asset/website_julia-set-camera/index.html"
         var fractalChoice = BF
     }
 }

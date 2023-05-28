@@ -38,6 +38,11 @@ open class OptionsMenu : AppCompatActivity() {
                 if (null != WebviewFragment.wv) WebviewFragment.wv!!.reload()
                 true
             }
+            R.id.menuJuliaSet -> {
+                MainActivity.fractalChoice = MainActivity.JULIASET;
+                if (null != WebviewFragment.wv) WebviewFragment.wv!!.reload()
+                true
+            }
             R.id.menuIntroOff -> {
                 setIntroductionOff(item)
                 true

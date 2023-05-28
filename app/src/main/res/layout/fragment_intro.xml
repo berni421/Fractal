@@ -47,6 +47,17 @@
                 app:layout_constraintTop_toBottomOf="@id/introWelcomeTextView"
                 app:srcCompat="@drawable/screenshot2"
                 app:layout_constraintLeft_toRightOf="@id/introWelcomeImage"
+                app:layout_constraintRight_toRightOf="@id/introWelcomeImage3" />
+
+            <ImageView
+                android:id="@+id/introWelcomeImage3"
+                android:layout_width="128dp"
+                android:layout_height="192dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="Screenshot2"
+                app:layout_constraintTop_toBottomOf="@id/introWelcomeTextView"
+                app:srcCompat="@drawable/screenshot3"
+                app:layout_constraintLeft_toRightOf="@id/introWelcomeImage2"
                 app:layout_constraintRight_toRightOf="parent" />
 
             <TextView

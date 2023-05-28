@@ -2,12 +2,13 @@
 // https://github.com/freshfork/p5.EasyCam
 
 let bg = null;
-let accuracy = 1;
+let accuracy = 2;
 let x = 0;
 let y = 0;
 let cam = null;
 
 function setup() {
+  pixelDensity(1);
   createCanvas(windowWidth, windowHeight, WEBGL);
 
   bg = createGraphics(width * accuracy, height * accuracy);

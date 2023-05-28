@@ -14,7 +14,7 @@
     <string name="disclaimer_accept">I accept these terms.</string>
     <string name="dont_show_next_time">Do not show next time?</string>
     <string name="intro_welcome">Welcome
-        \n\nBarnesly Fern, and MandelBrot Set fractal</string>
+        \n\nBarnesly Fern, MandelBrot Set, Julia Set fractal</string>
     <string name="intro_welcome2">
         \n\nUse menu option top right to chane fractal drawing.
         \n\nMovement:

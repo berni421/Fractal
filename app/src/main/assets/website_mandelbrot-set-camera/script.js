@@ -4,10 +4,12 @@ const accuracy = 1.0;
 var xmin, ymin, maxiterations, xmax, ymax, dx, dy, x, y, i, j;
 
 function setup() {
+  pixelDensity(1);
   createCanvas(windowWidth, windowHeight, WEBGL);
 
   bg = createGraphics(width * accuracy, height * accuracy);
   bg.background(32);
+  bg.loadPixels();
 
   // Camera
   cam = createEasyCam();
@@ -42,7 +44,7 @@ function setupMS() {
   // Maximum number of iterations for each point on the complex plane
   maxiterations = 8;
   // Increment for maxinterations
-  dIterations = 8;
+  dIterations = 4;
 
   // x goes from xmin to xmax
   xmax = xmin + w;
@@ -55,56 +57,63 @@ function setupMS() {
 
   // Start y
   y = ymin;
-  j = 0;
+  j = 0
+}
+
+function drawMS() {
+  if (j > bg.height) return;
+  // Start x
+  x = xmin;
+  for (let i = 0; i < bg.width; i++) {
+    // Now we test, as we iterate z = z^2 + cm does z tend towards infinity?
+    let a = x;
+    let b = y;
+    let n = 0;
+    while (n < maxiterations) {
+      const aa = a * a;
+      const bb = b * b;
+      const twoab = 2.0 * a * b;
+      a = aa - bb + x;
+      b = twoab + y;
+      // Infinty in our finite world is simple, let's just consider it 16
+      if (dist(aa, bb, 0, 0) > 16) {
+        break;  // Bail
+      }
+      n++;
+    }
+    plot(i, j, n);
+    x += dx;
+  }
+  y += dy;
+  j++;
 }
 
 function draw() {
-  if (j < bg.height) {
-    // Start x
-    x = xmin;
-    for (let i = 0; i < bg.width; i++) {
-      plotMS(i, j);
-      x += dx;
-    }
-    y += dy;
-    j++;
-    background(0);
-    image(bg, -width / 2, -height / 2, width, height);
-  } else {
-    // new start
-    // Start y
+  background(0);
+  drawMS();
+  bg.updatePixels();
+  image(bg, -width / 2, -height / 2, width, height);
+  if (j > bg.height) {
+    maxiterations += dIterations;
+    // Restart y
     y = ymin;
     j = 0;
-    maxiterations += dIterations;
     print("maxiterations: ", maxiterations);
   }
 }
 
-function plotMS(i, j) {
-  // Now we test, as we iterate z = z^2 + cm does z tend towards infinity?
-  let a = x;
-  let b = y;
-  let n = 0;
-  while (n < maxiterations) {
-    const aa = a * a;
-    const bb = b * b;
-    const twoab = 2.0 * a * b;
-    a = aa - bb + x;
-    b = twoab + y;
-    // Infinty in our finite world is simple, let's just consider it 16
-    if (dist(aa, bb, 0, 0) > 16) {
-      break;  // Bail
-    }
-    n++;
-  }
-
+function plot(i, j, n) {
   // We color each pixel based on how long it takes to get to infinity
   // If we never got there, let's pick the color black
-  let bright = 0;
-  if (n !== maxiterations) {
+  let pix = (i + j * bg.width) * 4;
+  if (n < maxiterations) {
     const norm = map(n, 0, maxiterations, 0, 1);
-    bright = map(sqrt(norm), 0, 1, 0, 255);
+    bg.pixels[pix + 0] = 0;
+    bg.pixels[pix + 1] = map(norm, 0, 1, 0, 255);
+    bg.pixels[pix + 2] = 0;
+  } else {
+    bg.pixels[pix + 0] = 0;
+    bg.pixels[pix + 1] = 0;
+    bg.pixels[pix + 2] = 0;
   }
-  bg.stroke(0, bright, 0);
-  bg.point(i, j);
 }

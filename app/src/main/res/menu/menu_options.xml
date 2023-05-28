@@ -3,11 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menuBarnsleyFern"
-        android:title="Barnsley Fern"
+        android:title="Plot the Barnsley Fern"
         app:showAsAction="never" />
     <item
         android:id="@+id/menuMandelbrotSet"
-        android:title="Mandelbrot Set"
+        android:title="Plot the Mandelbrot Set"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuJuliaSet"
+        android:title="Plot the Julia Set"
         app:showAsAction="never" />
     <item
         android:id="@+id/menuIntroOff"
