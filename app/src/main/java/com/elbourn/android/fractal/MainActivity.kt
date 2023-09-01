@@ -3,6 +3,7 @@ package com.elbourn.android.fractal
 import android.os.Bundle
 import android.util.Log
 import android.window.OnBackInvokedDispatcher
+import androidx.activity.addCallback
 
 import com.elbourn.android.fractal.fragments.IntroFragment
 
@@ -13,14 +14,19 @@ class MainActivity : OptionsMenu() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        onBackPressedDispatcher.addCallback(this /* lifecycle owner */) {
+            Log.i(TAG, "start onBackPressed")
+            finishAffinity()
+            Log.i(TAG, "end onBackPressed")
+        }
     }
 
-    override fun onBackPressed() {
-//        super.onBackPressed()
-        Log.i(TAG, "start onBackPressed")
-        finishAffinity()
-        Log.i(TAG, "end onBackPressed")
-    }
+//    override fun onBackPressed() {
+////        super.onBackPressed()
+//        Log.i(TAG, "start onBackPressed")
+//        finishAffinity()
+//        Log.i(TAG, "end onBackPressed")
+//    }
 
 //    override fun onResumeFragments() {
 //        super.onResumeFragments()
