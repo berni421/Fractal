@@ -21,18 +21,6 @@ class MainActivity : OptionsMenu() {
         }
     }
 
-//    override fun onBackPressed() {
-////        super.onBackPressed()
-//        Log.i(TAG, "start onBackPressed")
-//        finishAffinity()
-//        Log.i(TAG, "end onBackPressed")
-//    }
-
-//    override fun onResumeFragments() {
-//        super.onResumeFragments()
-//        if (sketchVisible) sketch.onResume()
-//    }
-
     companion object {
         const val BF = "file:///android_asset/website_barnsley-fern-camera/index.html"
         const val MANDELBROTSET = "file:///android_asset/website_mandelbrot-set-camera/index.html"

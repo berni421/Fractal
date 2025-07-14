@@ -16,7 +16,7 @@ class MyWebChromeClient(activity: Activity) : WebChromeClient() {
     }
 
     override fun onConsoleMessage(consoleMessage: ConsoleMessage): Boolean {
-        Log.i(TAG, "WebView: " + consoleMessage.message())
+//        Log.i(TAG, "WebView: " + consoleMessage.message())
         return true
     }
 }
